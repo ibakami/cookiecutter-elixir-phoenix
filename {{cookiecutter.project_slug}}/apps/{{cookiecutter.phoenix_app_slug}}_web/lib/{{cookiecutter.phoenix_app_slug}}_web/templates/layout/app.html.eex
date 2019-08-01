@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{cookiecutter.phoenix_app_module}} · Phoenix Framework</title>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!--
+      Loops and imports each npm package manually on the HTML file based on manifest.json
+    -->
+    <% npm_chunks = get_npm_chunk_list() %>
+      <%= for key <- npm_chunks do %>
+      <script type="text/javascript" src="<%= webpack_entrypoint_path(@conn, key) %>"></script>
+    <% end %>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript" src="<%= webpack_entrypoint_path(@conn, "js/index.js") %>"></script>
+  </body>
+</html>

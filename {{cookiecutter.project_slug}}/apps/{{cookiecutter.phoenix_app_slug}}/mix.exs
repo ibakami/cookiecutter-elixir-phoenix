@@ -4,16 +4,23 @@ defmodule {{cookiecutter.phoenix_app_module}}.MixProject do
   def project do
     [
       app: :{{cookiecutter.phoenix_app_slug}},
-      version: "0.1.0",
+      version: "{{cookiecutter.version}}",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.5",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -36,10 +43,13 @@ defmodule {{cookiecutter.phoenix_app_module}}.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:ecto_sql, "~> 3.1"},
+      {:ecto_sql, "~> 3.1.6"},
       {:postgrex, ">= 0.0.0"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:ex_machina, "~> 2.3", only: :test}
     ]
   end
 

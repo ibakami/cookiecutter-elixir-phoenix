@@ -4,11 +4,19 @@ defmodule {{cookiecutter.phoenix_app_module}}.Umbrella.MixProject do
   def project do
     [
       apps_path: "apps",
-      version: "0.1",
+      version: "{{cookiecutter.version}}",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
       releases: [
         {{cookiecutter.phoenix_app_slug}}: [
+          include_executables_for: [:unix],
           applications: [{{cookiecutter.phoenix_app_slug}}: :permanent, {{cookiecutter.phoenix_app_slug}}_web: :permanent]
         ]
       ]
@@ -29,6 +37,8 @@ defmodule {{cookiecutter.phoenix_app_module}}.Umbrella.MixProject do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
     ]
   end

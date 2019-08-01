@@ -22,7 +22,7 @@ defmodule {{cookiecutter.phoenix_app_module}}.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: { {{cookiecutter.phoenix_app_module}}.Application, []},
+      mod: {{'{'}}{{cookiecutter.phoenix_app_module}}.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

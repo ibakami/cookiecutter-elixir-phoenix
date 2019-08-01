@@ -11,7 +11,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Application do
       # Start the endpoint when the application starts
       {{cookiecutter.phoenix_app_module}}Web.Endpoint
       # Starts a worker by calling: {{cookiecutter.phoenix_app_module}}Web.Worker.start_link(arg)
-      # { {{cookiecutter.phoenix_app_module}}Web.Worker, arg},
+      # {{'{'}}{{cookiecutter.phoenix_app_module}}Web.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

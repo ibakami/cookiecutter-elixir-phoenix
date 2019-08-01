@@ -1,0 +1,13 @@
+version: "3"
+volumes:
+  postgres-data:
+services:
+  postgres:
+    image: postgres:10.5-alpine
+    network_mode: bridge
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB={{cookiecutter.phoenix_app_slug}}_dev

@@ -1,0 +1,7 @@
+/coverage
+/dist
+/examples
+/node_modules
+webpack.config.js
+**/*.test.ts
+**/*.test.tsx

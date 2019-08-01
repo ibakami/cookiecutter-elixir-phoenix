@@ -1,0 +1,8 @@
+**/.*
+**/_build/
+**/deps/
+**/README*
+**/test/
+**/priv/static/
+Dockerfile
+Makefile

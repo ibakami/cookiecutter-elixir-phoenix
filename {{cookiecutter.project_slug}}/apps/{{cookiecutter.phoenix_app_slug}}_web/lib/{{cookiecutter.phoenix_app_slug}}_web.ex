@@ -37,7 +37,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
+      import {{cookiecutter.phoenix_app_module}}Web.WebpackEntrypoint
       import {{cookiecutter.phoenix_app_module}}Web.ErrorHelpers
       import {{cookiecutter.phoenix_app_module}}Web.Gettext
       alias {{cookiecutter.phoenix_app_module}}Web.Router.Helpers, as: Routes

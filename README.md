@@ -9,7 +9,11 @@ Install `cookiecutter` command line: `pip install cookiecutter`
 
 Usage
 -----
-Generate a new Cookiecutter template layout: `cookiecutter gh:aisrael/cookiecutter-elixir-phoenix`    
+Generate a new Elixir + Phoenix + GraphQL + ReactJS + Docker project:
+
+```
+cookiecutter gh:ibakami/cookiecutter-elixir-phoenix
+```
 
 License
 -------

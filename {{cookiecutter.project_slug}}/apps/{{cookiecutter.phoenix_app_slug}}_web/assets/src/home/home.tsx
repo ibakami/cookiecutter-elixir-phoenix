@@ -1,5 +1,6 @@
 import { RouteComponentProps } from "@reach/router"
+import React from "react"
 
 export const Home: React.SFC<RouteComponentProps> = () => (
-  <>This is a homepage</>
+  <div>This is a homepage</div>
 )

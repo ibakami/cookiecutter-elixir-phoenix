@@ -114,7 +114,7 @@ module.exports = (env, argv) => {
       // Copies everything on the static folder
       new CopyWebpackPlugin([
         { from: "static/**/*", to: path.resolve(distFolder, "../") },
-        { from: "src/pwa", distFolder },
+        { from: "pwa", distFolder },
       ]),
       // new LodashModuleReplacementPlugin(),
       // This certain plugin remembers the hashes we use in every assets,

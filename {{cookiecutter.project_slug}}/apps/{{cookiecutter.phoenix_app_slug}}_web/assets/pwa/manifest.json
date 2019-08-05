@@ -1,0 +1,15 @@
+{
+  "short_name": "Project Name",
+  "name": "Name",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#333333"
+}

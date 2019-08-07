@@ -24,7 +24,6 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Endpoint do
     only: ~w(css fonts images js favicon.ico service-worker.js robots.txt assets-manifest.json),
     only_matching: ~w(precache-manifest)
 
-
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

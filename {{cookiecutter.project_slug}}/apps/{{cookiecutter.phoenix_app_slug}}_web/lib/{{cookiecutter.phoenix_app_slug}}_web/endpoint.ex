@@ -19,7 +19,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Endpoint do
   plug Plug.Static,
     # All our frontend static files will go on assets folder
     at: "/assets",
-    from: :facilities_web,
+    from: :{{cookiecutter.phoenix_app_slug}}_web,
     gzip: true,
     only: ~w(css fonts images js favicon.ico service-worker.js robots.txt assets-manifest.json),
     only_matching: ~w(precache-manifest)

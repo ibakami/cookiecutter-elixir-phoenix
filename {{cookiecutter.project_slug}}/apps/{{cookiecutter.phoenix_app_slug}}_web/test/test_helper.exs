@@ -1,2 +1,2 @@
 ExUnit.start()
-Sandbox.mode({{cookiecutter.phoenix_app_module}}.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode({{cookiecutter.phoenix_app_module}}.Repo, :manual)

@@ -1,4 +1,4 @@
-# {{cookiecutter.phoenix_app_module}}.Umbrella
+# {{cookiecutter.phoenix_app_module}}
 
 
 To start your Phoenix server:

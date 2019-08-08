@@ -1,9 +1,9 @@
 {
-  "short_name": "Project Name",
-  "name": "Name",
+  "short_name": "{{cookiecutter.phoenix_app_module}}",
+  "name": "{{cookiecutter.phoenix_app_slug}}",
   "icons": [
     {
-      "src": "https://via.placeholder.com/512",
+      "src": "logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

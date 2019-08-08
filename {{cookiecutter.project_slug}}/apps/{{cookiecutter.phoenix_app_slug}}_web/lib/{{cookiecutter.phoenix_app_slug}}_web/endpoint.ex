@@ -14,7 +14,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Endpoint do
     at: "/",
     from: :{{cookiecutter.phoenix_app_slug}}_web,
     gzip: false,
-    only: ~w(manifest.json css fonts images js favicon.ico robots.txt)
+    only: ~w(manifest.json css fonts images js favicon.ico robots.txt service-worker.js)
 
   plug Plug.Static,
     # All our frontend static files will go on assets folder

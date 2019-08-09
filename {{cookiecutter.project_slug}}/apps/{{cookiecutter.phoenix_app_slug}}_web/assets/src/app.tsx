@@ -13,12 +13,19 @@ import {
   Segment,
 } from "semantic-ui-react"
 
+const SegmentMargin = { margin: "5em 0em 0em", padding: "5em 0em" }
+const ImageMargin = { marginRight: "1.5em" }
+
 export const App = () => (
   <div>
     <Menu fixed="top" inverted>
       <Container>
         <Menu.Item as="a" header>
-          <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+          <Image
+            size="mini"
+            src="https://react.semantic-ui.com/logo.png"
+            style={ImageMargin}
+          />
           Project Name
         </Menu.Item>
         <Menu.Item as="a">Home</Menu.Item>
@@ -44,7 +51,7 @@ export const App = () => (
       </Container>
     </Menu>
     <AppRouter />
-    <Segment inverted vertical>
+    <Segment inverted vertical margin={SegmentMargin}>
       <Container textAlign="center">
         <Grid divided inverted stackable>
           <Grid.Column width={3}>

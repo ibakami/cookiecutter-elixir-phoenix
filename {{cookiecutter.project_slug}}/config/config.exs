@@ -25,9 +25,25 @@ config :{{cookiecutter.phoenix_app_slug}}_web, {{cookiecutter.phoenix_app_module
   pubsub: [name: {{cookiecutter.phoenix_app_module}}Web.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
+elixir_logger_level = System.get_env("ELIXIR_LOGGER_LEVEL") || "info"
+
+level =
+  case String.downcase(elixir_logger_level) do
+    s when s == "1" or s == "debug" ->
+      :debug
+
+    s when s == "3" or s == "warn" ->
+      :warn
+
+    _ ->
+      :info
+  end
+
+# Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:request_id],
+  level: level
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

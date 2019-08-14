@@ -1,0 +1,5 @@
+{
+  "skip_files": [
+    "lib/{{cookiecutter.phoenix_app_module}}/application.ex"
+  ]
+}

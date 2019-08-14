@@ -5,6 +5,8 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Application do
 
   use Application
 
+  @spec start(Application.start_type(), term()) ::
+          {:error, reason :: term()} | {:ok, pid()} | {:ok, pid(), Application.state()}
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
@@ -22,6 +24,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Application do
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
+  @spec config_change(list(tuple), list(tuple), list(any)) :: :ok
   def config_change(changed, _new, removed) do
     {{cookiecutter.phoenix_app_module}}Web.Endpoint.config_change(changed, removed)
     :ok

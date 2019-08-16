@@ -4,10 +4,9 @@ volumes:
 services:
   postgres:
     image: postgres:10.5-alpine
-    network_mode: bridge
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB={{cookiecutter.phoenix_app_slug}}_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: {{cookiecutter.phoenix_app_slug}}_dev

@@ -5,6 +5,8 @@ defmodule {{cookiecutter.phoenix_app_module}}.Application do
 
   use Application
 
+  @spec start(Application.start_type(), term()) ::
+          {:error, reason :: term()} | {:ok, pid()} | {:ok, pid(), Application.state()}
   def start(_type, _args) do
     children = [
       {{cookiecutter.phoenix_app_module}}.Repo

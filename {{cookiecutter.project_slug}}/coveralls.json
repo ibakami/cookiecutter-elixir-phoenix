@@ -1,0 +1,6 @@
+{
+  "skip_files": [
+    "apps/{{cookiecutter.phoenix_app_module}}/coveralls.json",
+    "apps/{{cookiecutter.phoenix_app_module}}_web/coveralls.json"
+  ]
+}

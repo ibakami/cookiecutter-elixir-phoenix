@@ -1,0 +1,161 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  IMAGE_REPO: registry.gitlab.com/ibakami/medilink
+
+# Cache deps in between jobs
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - _build/test
+
+# Base elixir job:
+#
+# * elixir-1.9.0-alpine
+# * only run on certain changes
+.elixir: &elixir
+  stage: test
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - mix.exs
+      - mix.lock
+      - apps/*/mix.exs
+      - apps/*/mix.lock
+      - apps/*/lib/**/*.{ex,exs}
+      - apps/*/priv/**/*.{ex,exs}
+      - apps/*/test/**/*.{ex,exs}
+  image: elixir:1.9.1-alpine
+  variables:
+    MIX_ENV: test
+  before_script:
+    - mix local.rebar --force
+    - mix local.hex --force
+    - mix deps.get
+
+credo:
+  <<: *elixir
+  script:
+    - mix credo --strict
+
+dialyzer:
+  <<: *elixir
+  when: manual
+  script:
+    - mix dialyzer
+
+mix_test:
+  <<: *elixir
+  variables:
+    DATABASE_URL: ecto://postgres:postgres@postgres/{{cookiecutter.phoenix_app_module}}_test
+    POSTGRES_DB: {{cookiecutter.phoenix_app_module}}_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_HOST: postgres
+  services:
+    - postgres:10.5-alpine
+  script:
+    - mix test
+
+coveralls:
+  <<: *elixir
+  image: elixir:1.9.1
+  variables:
+    DATABASE_URL: ecto://postgres:postgres@postgres/{{cookiecutter.phoenix_app_module}}_test
+    POSTGRES_DB: {{cookiecutter.phoenix_app_module}}_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_HOST: postgres
+  services:
+    - postgres:10.5-alpine
+  script:
+    - mix coveralls --umbrella
+    - >
+      mix coveralls --umbrella |
+      perl -n -e '/\[TOTAL\]\s+([0-9.]+)%/ && exit ($1 < 80 ? 1 : 0)' ||
+      (echo 'Code coverage below 80%!' && false)
+
+# Base docker job
+.docker: &docker
+  stage: build
+  image: docker:18.09.7
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    # When using dind, it's wise to use the overlayfs driver for
+    # improved performance.
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker info
+
+docker_build_develop:
+  <<: *docker
+  only:
+    refs:
+      - develop
+    changes:
+      - .gitlab-ci.yml
+      - .dockerignore
+      - Dockerfile
+      - mix.exs
+      - mix.lock
+      - apps/*/config/*
+      - apps/*/mix.exs
+      - apps/*/mix.lock
+      - apps/*/lib/**/*.{ex,exs}
+      - apps/*/priv/**/*.{ex,exs}
+  script:
+    - docker build
+      --build-arg APP_VSN=$(grep 'version:' apps/{{cookiecutter.phoenix_app_module}}/mix.exs | cut -d '"' -f2)
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:latest
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:${CI_COMMIT_SHORT_SHA}
+      .
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:latest
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:${CI_COMMIT_SHORT_SHA}
+
+docker_build_features:
+  <<: *docker
+  when: manual
+  only:
+    - /^feature\/.*$/
+  script:
+    - docker build
+      --build-arg APP_VSN=$(grep 'version:' apps/{{cookiecutter.phoenix_app_module}}/mix.exs | cut -d '"' -f2)
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:latest
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:${CI_COMMIT_SHORT_SHA}
+      .
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:latest
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:${CI_COMMIT_SHORT_SHA}
+
+docker_build_release_candidate:
+  <<: *docker
+  when: manual
+  only:
+    - /^release\/.*$/
+  script:
+    - export APP_VSN=$(grep 'version:' apps/{{cookiecutter.phoenix_app_module}}/mix.exs | cut -d '"' -f2)
+    - docker build
+      --build-arg APP_VSN=${APP_VSN}
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:latest
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:${APP_VSN}.${CI_COMMIT_SHORT_SHA}
+      .
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:latest
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:${APP_VSN}.${CI_COMMIT_SHORT_SHA}
+
+docker_build_tags:
+  <<: *docker
+  only:
+    - tags
+  script:
+    - docker build
+      --build-arg APP_VSN=$(grep 'version:' apps/{{cookiecutter.phoenix_app_module}}/mix.exs | cut -d '"' -f2)
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:latest
+      -t $IMAGE_REPO/$CI_PROJECT_NAME:$CI_COMMIT_TAG
+      .
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:latest
+    - docker push $IMAGE_REPO/$CI_PROJECT_NAME:$CI_COMMIT_TAG

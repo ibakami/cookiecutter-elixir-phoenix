@@ -13,6 +13,3 @@ config :{{cookiecutter.phoenix_app_slug}}, {{cookiecutter.phoenix_app_module}}.R
 config :{{cookiecutter.phoenix_app_slug}}_web, {{cookiecutter.phoenix_app_module}}Web.Endpoint,
   http: [port: 4002],
   server: false
-
-# Print only warnings and errors during test
-config :logger, level: :warn

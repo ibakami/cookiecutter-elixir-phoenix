@@ -1,5 +1,6 @@
 defmodule {{cookiecutter.phoenix_app_module}}Web.UserSocket do
   use Phoenix.Socket
+  use Absinthe.Phoenix.Socket, schema: FacilitiesWeb.GraphQL.Schema
 
   ## Channels
   # channel "room:*", {{cookiecutter.phoenix_app_module}}Web.RoomChannel

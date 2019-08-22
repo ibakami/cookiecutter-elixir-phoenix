@@ -23,4 +23,12 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
   # scope "/api", {{cookiecutter.phoenix_app_module}}Web do
   #   pipe_through :api
   # end
+
+  scope "/" do
+    forward("/graphiql", Absinthe.Plug.GraphiQL,
+      schema: {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema,
+      json_codec: Jason,
+      socket: {{cookiecutter.phoenix_app_module}}Web.UserSocket
+    )
+  end
 end

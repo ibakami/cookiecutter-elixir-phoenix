@@ -1,5 +1,6 @@
 defmodule {{cookiecutter.phoenix_app_module}}Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :{{cookiecutter.phoenix_app_slug}}_web
+  use Absinthe.Phoenix.Endpoint
 
   socket "/socket", {{cookiecutter.phoenix_app_module}}Web.UserSocket,
     websocket: true,

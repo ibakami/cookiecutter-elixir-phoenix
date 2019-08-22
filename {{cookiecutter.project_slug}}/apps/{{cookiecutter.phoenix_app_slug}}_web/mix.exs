@@ -59,6 +59,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.MixProject do
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_phoenix, "~> 1.4.0"},
       {:ex_machina, "~> 2.3", only: :test}
     ]
   end

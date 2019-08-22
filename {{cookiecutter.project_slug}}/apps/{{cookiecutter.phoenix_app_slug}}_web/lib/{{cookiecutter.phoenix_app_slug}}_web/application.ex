@@ -11,7 +11,8 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      {{cookiecutter.phoenix_app_module}}Web.Endpoint
+      {{cookiecutter.phoenix_app_module}}Web.Endpoint,
+      {Absinthe.Subscription, [{{cookiecutter.phoenix_app_module}}Web.Endpoint]}
       # Starts a worker by calling: {{cookiecutter.phoenix_app_module}}Web.Worker.start_link(arg)
       # {{'{'}}{{cookiecutter.phoenix_app_module}}Web.Worker, arg},
     ]

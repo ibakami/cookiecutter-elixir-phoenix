@@ -8,6 +8,7 @@ defmodule {{cookiecutter.phoenix_app_module}}.Umbrella.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
+      aliases: aliases(),
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.detail": :test,
@@ -41,5 +42,29 @@ defmodule {{cookiecutter.phoenix_app_module}}.Umbrella.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
     ]
+  end
+
+  defp aliases do
+    [
+      "app.setup": [
+        "deps.get",
+        "ecto.setup",
+        &assets/1
+      ],
+      "ecto.setup": [
+        "ecto.create",
+        "ecto.migrate",
+      ],
+      "ecto.reset": ["ecto.drop", "ecto.setup"]
+    ]
+  end
+
+  defp assets(args) do
+    {_, res} =
+      System.cmd("yarn", args, into: IO.binstream(:stdio, :line), cd: "apps/{{cookiecutter.phoenix_app_slug}}_web/assets")
+
+    if res > 0 do
+      System.at_exit(fn _ -> exit({:shutdown, res}) end)
+    end
   end
 end

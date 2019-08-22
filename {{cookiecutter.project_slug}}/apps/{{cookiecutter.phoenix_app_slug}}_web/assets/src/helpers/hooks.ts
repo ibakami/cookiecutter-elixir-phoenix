@@ -11,3 +11,4 @@ export const useRootTitle = (pageName?: string): void => {
       return UnmountBehavior
     },
   )
+}

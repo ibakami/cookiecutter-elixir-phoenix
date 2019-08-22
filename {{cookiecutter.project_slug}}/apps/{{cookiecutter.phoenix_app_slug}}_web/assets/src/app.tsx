@@ -15,6 +15,7 @@ import {
 
 const SegmentMargin = { margin: "5em 0em 0em", padding: "5em 0em" }
 const ImageMargin = { marginRight: "1.5em" }
+const containerMargin = { margin: "5em 0" }
 
 export const App = () => (
   <div>
@@ -50,7 +51,9 @@ export const App = () => (
         </Dropdown>
       </Container>
     </Menu>
-    <AppRouter />
+    <Container text style={containerMargin} fluid>
+      <AppRouter />
+    </Container>
     <Segment inverted vertical margin={SegmentMargin}>
       <Container textAlign="center">
         <Grid divided inverted stackable>

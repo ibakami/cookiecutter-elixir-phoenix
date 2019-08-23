@@ -25,6 +25,8 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
   # end
 
   scope "/" do
+    forward("/graphql", Absinthe.Plug, schema: {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema, json_codec: Jason)
+
     forward("/graphiql", Absinthe.Plug.GraphiQL,
       schema: {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema,
       json_codec: Jason,

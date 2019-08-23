@@ -15,7 +15,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema do
     field :add_user, :user do
       arg :name, :string
       arg :age, :integer
-      resolve(fn _, %{name: name, age: age}, _ do
+      resolve(fn _, %{name: name, age: age}, _ ->
         {:ok, %{name: name, age: age}}
       end)
     end

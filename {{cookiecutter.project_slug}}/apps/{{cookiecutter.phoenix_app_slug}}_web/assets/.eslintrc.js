@@ -67,6 +67,8 @@ module.exports = {
       },
     ],
     "react/prop-types": 0,
+    "react/prefer-stateless-function": 2,
+    // very unlikely you'll stumble with the radix issue, unless you're trying to be clever with parseInt
     radix: 0,
     // we don't need to return or catch promises for our usage
     // see more here: https://gist.github.com/mwickett/2aecfdeea40daa07d39e11922ae1fe20#gistcomment-2153642

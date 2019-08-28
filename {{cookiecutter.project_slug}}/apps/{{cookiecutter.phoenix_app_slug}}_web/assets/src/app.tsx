@@ -1,5 +1,3 @@
-import { AppRouter } from "./app-router"
-
 import React from "react"
 import {
   Container,
@@ -12,6 +10,7 @@ import {
   Menu,
   Segment,
 } from "semantic-ui-react"
+import { AppRouter } from "./app-router"
 
 const SegmentMargin = { margin: "5em 0em 0em", padding: "5em 0em" }
 const ImageMargin = { marginRight: "1.5em" }

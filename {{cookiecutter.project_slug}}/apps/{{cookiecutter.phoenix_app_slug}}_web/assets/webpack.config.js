@@ -66,7 +66,16 @@ module.exports = (env, argv) => {
           test: /\.s?css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
+        // Some Apollo links and other libraries uses mjs extensions. We'll need a loader for that
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto",
+        },
       ],
+    },
+    resolve: {
+      extensions: ["*", ".js", ".jsx", ".json", ".ts", ".tsx", ".mjs"],
     },
     optimization: {
       // This will make the chunk names we produce to be human readable
@@ -103,9 +112,6 @@ module.exports = (env, argv) => {
         }),
         new OptimizeCSSAssetsPlugin({}),
       ],
-    },
-    resolve: {
-      extensions: ["*", ".js", ".jsx", ".json", ".ts", ".tsx", ".mjs"],
     },
     // The plugin's order is important, it executes everything asynchronously.
     plugins: [

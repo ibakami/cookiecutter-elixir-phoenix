@@ -1,5 +1,5 @@
-defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
-  use {{cookiecutter.phoenix_app_module}}Web, :router
+defmodule SubscriptionWeb.Router do
+  use SubscriptionWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,24 +13,24 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", {{cookiecutter.phoenix_app_module}}Web do
+  scope "/", SubscriptionWeb do
     pipe_through :browser
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", {{cookiecutter.phoenix_app_module}}Web do
+  # scope "/api", SubscriptionWeb do
   #   pipe_through :api
   # end
 
   scope "/" do
-    forward("/graphql", Absinthe.Plug, schema: {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema, json_codec: Jason)
+    forward("/graphql", Absinthe.Plug, schema: SubscriptionWeb.GraphQL.Schema, json_codec: Jason, socket: SubscriptionWeb.UserSocket)
 
     forward("/graphiql", Absinthe.Plug.GraphiQL,
-      schema: {{cookiecutter.phoenix_app_module}}Web.GraphQL.Schema,
+      schema: SubscriptionWeb.GraphQL.Schema,
       json_codec: Jason,
-      socket: {{cookiecutter.phoenix_app_module}}Web.UserSocket
+      socket: SubscriptionWeb.UserSocket
     )
   end
 end

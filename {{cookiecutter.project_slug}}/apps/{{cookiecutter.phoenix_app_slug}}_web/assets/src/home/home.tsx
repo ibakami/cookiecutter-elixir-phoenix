@@ -1,10 +1,56 @@
 import { RouteComponentProps } from "@reach/router"
-import { Container, Header } from "semantic-ui-react"
+import { Container, Header, Segment, Label } from "semantic-ui-react"
 import React from "react"
+import { useSubscription, useQuery } from "@apollo/react-hooks"
+import gql from "graphql-tag"
 
-export const Home: React.SFC<RouteComponentProps> = () => (
-  <Container text>
-    <Header as="h1">Elixir Phoenix Cookie Cutter</Header>
-    <p>Phoenix Umbrella Project with React/TypeScript </p>
-  </Container>
-)
+const LIST_USERS = gql`
+  query {
+    listUsers {
+      name
+      age
+    }
+  }
+`
+
+const USER_ADDED = gql`
+  subscription {
+    userAdded {
+      name
+      age
+    }
+  }
+`
+
+export const Home: React.SFC<RouteComponentProps> = () => {
+  const { loading, error, data } = useSubscription(USER_ADDED)
+  const userList = useQuery(LIST_USERS)
+
+  console.log(userList)
+
+  return (
+    <Container text>
+      <Header as="h1">Elixir Phoenix Cookie Cutter</Header>
+      <p>Phoenix Umbrella Project with React/TypeScript </p>
+      <Header>Current Users: </Header>
+      {data ? (
+        <Segment>
+          <p>{data.userAdded.name}</p>
+          Age: {data.userAdded.age}
+        </Segment>
+      ) : (
+        <Segment>
+          <p>No User</p>
+        </Segment>
+      )}
+      <Header>List of Users: </Header>
+      {userList.data.listUsers &&
+        userList.data.listUsers.map((item: any) => (
+          <Segment key={`list-user-${item.name}`}>
+            <p>{item.name}</p>
+            Age: {item.age}
+          </Segment>
+        ))}
+    </Container>
+  )
+}

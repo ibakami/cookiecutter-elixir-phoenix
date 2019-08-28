@@ -2,10 +2,25 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 import { App } from "./src/app"
+import { ApolloClient } from "apollo-client"
+import { apolloLinks } from "./apollo-links"
+import { InMemoryCache } from "apollo-cache-inmemory"
+import { ApolloProvider } from "@apollo/react-hooks"
 
 const appRoot: HTMLDivElement | null = document.querySelector("#root")
 
-const AppComponent: React.SFC = () => <App />
+const cache = new InMemoryCache()
+
+const client = new ApolloClient({
+  link: apolloLinks,
+  cache,
+})
+
+const AppComponent: React.SFC = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+)
 
 ReactDOM.render(<AppComponent />, appRoot)
 

@@ -1,7 +1,7 @@
 import * as React from "react"
+import { RouteComponentProps } from "@reach/router"
 import { useRootTitle } from "../helpers/hooks"
 import { LoadingPage } from "../helpers/components"
-import { RouteComponentProps } from "@reach/router"
 
 const PAGE_NAME = "Home"
 
@@ -16,15 +16,13 @@ const PAGE_NAME = "Home"
 // IMPORTANT!
 // Change the webpackChunkName comment below, so the dynamic file will appear with a proper name
 
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const LazyComponent = React.lazy(() =>
   import(/* webpackChunkName: "HomeComponent" */ "./home").then(module => ({
     default: module.Home,
   })),
 )
-/* eslint-enable */
 
-const Root: React.FC<RouteComponentProps> = (props): JSX.Element => {
+export const HomeRoot: React.FC<RouteComponentProps> = (props): JSX.Element => {
   useRootTitle(PAGE_NAME)
   return (
     <React.Suspense
@@ -34,5 +32,3 @@ const Root: React.FC<RouteComponentProps> = (props): JSX.Element => {
     </React.Suspense>
   )
 }
-
-export default Root

@@ -14,6 +14,7 @@
   },
   "exclude": [
     "/node_modules/**/*",
+    "apollo-links.ts",
     "**/*.d.ts",
     "**/*.spec.ts",
     "**/*.scss",

@@ -24,19 +24,16 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "**/*.{css,gql,graphql,html,json,less,md,mdx,scss,vue,yaml,yml}": [
-        "prettier --write",
-        "git add"
-      ],
-      "**/*.{js,jsx,ts,tsx}": [
-        "import-sort --write",
-        "prettier --write",
-        "eslint --cache --ext .js,.jsx,.ts,.tsx --fix",
-        "git add"
-      ]
-    },
-    "concurrent": false
+    "**/*.{css,gql,graphql,html,json,less,md,mdx,scss,vue,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,jsx,ts,tsx}": [
+      "import-sort --write",
+      "prettier --write",
+      "eslint --cache --ext .js,.jsx,.ts,.tsx --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "@absinthe/socket-apollo-link": "^0.2.1",
@@ -123,6 +120,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prettier": "^1.18.2",
     "sass-loader": "^7.1.0",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0",

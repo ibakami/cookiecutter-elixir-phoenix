@@ -2,23 +2,62 @@
 
 An Elixir + Phoenix umbrella project template
 
-## Requirements
+## Sections
 
+- [Features](#-features)
+- [Cookiecutter Requirements](#-cookiecutter-requirements)
+- [Cookiecutter Usage](#-cookiecutter-usage)
+- [Setting Everything Up](#-setting-everything-up)
+
+## Features
+
+- React (latest)
+- TypeScript
+- Eslint with customized rules for Typescript and React (loosely based on Airbnb rules)
+- Prettier + Editorconfig
+- Single Page Application Routing: Reach Router with Lazy Loading
+- Apollo GraphQL
+  - [React Apollo with `@apollo/react-hooks`](https://blog.apollographql.com/apollo-client-now-with-react-hooks-676d116eeae2)
+  - Apollo Client and Links setup readily available for you
+  - `websocket` and `subscription` working with example
+- Frontend optimizations with webpack configuration out of the box. Includes:
+  - [Split Chunks Optimization with `WebpackAssetsManifest`](https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758)
+  - Terser Minifier
+  - [Code Splitting and Dynamic Imports](https://medium.com/@ohsiwon/code-splitting-with-dynamic-import-test-and-learn-28bc2a06d1b8)
+  - OptimizeCSSAssetsPlugin
+  - GZIP (Compression Plugin)
+  - Workbox (Service Worker)
+  - Cache Busting with Service Worker
+- Progressive Web App Capable
+
+## Cookiecutter Requirements
+
+[Install python first](https://www.python.org/downloads/). We'll need `pip` or `pip3` to use `cookiecutter`.  
 Install `cookiecutter` command line: `pip install cookiecutter`
 
-## Usage
+## Cookiecutter Usage
 
 Generate a new Elixir + Phoenix + GraphQL + ReactJS + Docker project:
+
+Stable (`master`)
 
 ```
 cookiecutter gh:ibakami/cookiecutter-elixir-phoenix
 ```
 
+Latest (`develop`)
+
+```
+cookiecutter gh:ibakami/cookiecutter-elixir-phoenix --checkout develop
+```
+
+<!--
+Dont really think we'll need this in this section
 Websocket URL:
 
 ```
 ws://localhost:4000/socket
-```
+``` -->
 
 ## Setting everything up
 
@@ -67,6 +106,8 @@ Getting the npm packages with yarn (avoid using npm). Change `<application slug>
 ```
 (cd apps/<application_slug>_web/assets && yarn)
 ```
+
+## Running the project
 
 Make the phoenix project work locally
 

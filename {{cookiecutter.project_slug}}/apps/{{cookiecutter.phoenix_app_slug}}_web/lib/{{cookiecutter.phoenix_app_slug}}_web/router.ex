@@ -1,5 +1,5 @@
-defmodule SubscriptionWeb.Router do
-  use SubscriptionWeb, :router
+defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
+  use {{cookiecutter.phoenix_app_module}}Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]

@@ -8,7 +8,7 @@ An Elixir + Phoenix umbrella project template
 - [Cookiecutter Requirements](#-cookiecutter-requirements)
 - [Cookiecutter Usage](#-cookiecutter-usage)
 - [Setting Everything Up](#-setting-everything-up)
-- [Running the project](#-running-the-project)
+- [Running the project](##-running-the-project)
 
 ## Features
 

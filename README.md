@@ -9,6 +9,7 @@ An Elixir + Phoenix umbrella project template
 - [Cookiecutter Usage](#cookiecutter-usage)
 - [Setting Everything Up](#setting-everything-up)
 - [Running the project](#running-the-project)
+- [Recommended VS Code Plugins](#recommended-vs-code-plugins)
 
 ## Features
 
@@ -115,6 +116,15 @@ Make the phoenix project work locally
 ```
 mix phx.server
 ```
+
+## Recommended VS Code Plugins
+- Better Comments
+- EditorConfig for VS Code
+- Eslint
+- GraphQL
+- Prettier - Code Formatter
+- Prettier Now
+- vscode-elixir
 
 ## License
 

@@ -1,38 +1,41 @@
 import { RouteComponentProps } from "@reach/router"
-import { Container, Header, Segment, Label } from "semantic-ui-react"
+import { Container, Header, Image, Label } from "semantic-ui-react"
 import React from "react"
-import { useSubscription, useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
-
-const LIST_USERS = gql`
-  query {
-    listUsers {
-      name
-      age
-    }
-  }
-`
-
-const USER_ADDED = gql`
-  subscription {
-    userAdded {
-      name
-      age
-    }
-  }
-`
 
 export const Home: React.SFC<RouteComponentProps> = () => {
-  const { loading, error, data } = useSubscription(USER_ADDED)
-  const userList = useQuery(LIST_USERS)
-
-  console.log(userList)
-
   return (
-    <Container text>
+    <Container>
       <Header as="h1">Elixir Phoenix Cookie Cutter</Header>
       <p>Phoenix Umbrella Project with React/TypeScript </p>
-      <Header>Current Users: </Header>
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/media-paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      <Image
+        src="https://react.semantic-ui.com/images/wireframe/paragraph.png"
+        style={{ marginTop: "2em" }}
+      />
+      {/* <Header>Current Users: </Header>
       {data ? (
         <Segment>
           <p>{data.userAdded.name}</p>
@@ -50,7 +53,7 @@ export const Home: React.SFC<RouteComponentProps> = () => {
             <p>{item.name}</p>
             Age: {item.age}
           </Segment>
-        ))}
+        ))} */}
     </Container>
   )
 }

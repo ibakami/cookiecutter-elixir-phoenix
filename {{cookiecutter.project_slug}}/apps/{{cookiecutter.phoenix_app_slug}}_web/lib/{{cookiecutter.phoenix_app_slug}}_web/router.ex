@@ -17,6 +17,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/subscription-demo", PageController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -11,10 +11,11 @@ import {
   Segment,
 } from "semantic-ui-react"
 import { AppRouter } from "./app-router"
+import { Link } from "@reach/router"
 
 const SegmentMargin = { margin: "5em 0em 0em", padding: "5em 0em" }
 const ImageMargin = { marginRight: "1.5em" }
-const containerMargin = { margin: "5em 0" }
+const containerMargin = { margin: "5em 0", paddingTop: "2.5em" }
 
 export const App = () => (
   <div>
@@ -28,8 +29,12 @@ export const App = () => (
           />
           Project Name
         </Menu.Item>
-        <Menu.Item as="a">Home</Menu.Item>
-        <Menu.Item as="a">App</Menu.Item>
+        <Menu.Item as={Link} to="/">
+          Home
+        </Menu.Item>
+        <Menu.Item as={Link} to="/subscription-demo">
+          Subscription Demo
+        </Menu.Item>
 
         <Dropdown item simple text="Dropdown">
           <Dropdown.Menu>
@@ -50,7 +55,7 @@ export const App = () => (
         </Dropdown>
       </Container>
     </Menu>
-    <Container text style={containerMargin} fluid>
+    <Container style={containerMargin} fluid>
       <AppRouter />
     </Container>
     <Segment inverted vertical margin={SegmentMargin}>

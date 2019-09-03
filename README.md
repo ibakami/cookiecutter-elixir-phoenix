@@ -12,10 +12,17 @@ An Elixir + Phoenix umbrella project template
 - [Recommended VS Code Plugins](#recommended-vs-code-plugins)
 
 ## Features
-
+- Elixir (1.9.0)
+- Phoenix (1.4)
+- Absinthe (Elixir GraphQL library)
+- Credo
+- Dialyzer
+- Excoveralls
+- Dockerfile
+- Gitlab CI Configurations
 - React (latest)
 - TypeScript
-- Eslint with customized rules for Typescript and React (loosely based on Airbnb rules)
+- ESLint with customized rules for Typescript and React (loosely based on Airbnb rules)
 - Prettier + Editorconfig
 - Single Page Application Routing: Reach Router with Lazy Loading
 - Apollo GraphQL

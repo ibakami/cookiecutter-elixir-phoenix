@@ -130,7 +130,6 @@ mix phx.server
 - Eslint
 - GraphQL
 - Prettier - Code Formatter
-- Prettier Now
 - vscode-elixir
 
 ## License

@@ -18,7 +18,6 @@ import { ADD_USER, LIST_USERS, USER_ADDED } from "../../graphql"
 
 export const SubscriptionDemo: React.SFC<RouteComponentProps> = () => {
   const { loading, error, data } = useSubscription(USER_ADDED)
-  const userList = useQuery(LIST_USERS)
   const [mutate, mutationData] = useMutation(ADD_USER)
 
   return (
@@ -107,14 +106,6 @@ export const SubscriptionDemo: React.SFC<RouteComponentProps> = () => {
           <p>No User</p>
         </Segment>
       )}
-      <Header>List of Users: </Header>
-      {userList.data.listUsers &&
-        userList.data.listUsers.map((item: any) => (
-          <Segment key={`list-user-${item.name}`}>
-            <p>{item.name}</p>
-            Age: {item.age}
-          </Segment>
-        ))}
     </Container>
   )
 }

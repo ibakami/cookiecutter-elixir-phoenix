@@ -1,19 +1,20 @@
+import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks"
 import { RouteComponentProps } from "@reach/router"
-import {
-  Container,
-  Header,
-  Segment,
-  Divider,
-  Grid,
-  Input,
-  Button,
-  Form,
-  Label,
-} from "semantic-ui-react"
+import { Field, Formik, Form as FormikForm } from "formik"
 import React from "react"
-import { useSubscription, useQuery, useMutation } from "@apollo/react-hooks"
-import { LIST_USERS, USER_ADDED, ADD_USER } from "../graphql"
-import { Formik, Form as FormikForm, Field } from "formik"
+import {
+  Button,
+  Container,
+  Divider,
+  Form,
+  Grid,
+  Header,
+  Input,
+  Label,
+  Segment,
+} from "semantic-ui-react"
+
+import { ADD_USER, LIST_USERS, USER_ADDED } from "../../graphql"
 
 export const SubscriptionDemo: React.SFC<RouteComponentProps> = () => {
   const { loading, error, data } = useSubscription(USER_ADDED)
@@ -22,13 +23,15 @@ export const SubscriptionDemo: React.SFC<RouteComponentProps> = () => {
 
   return (
     <Container>
-      <Header as="h1">Subscription Demo</Header>
+      <Header as="h1" dividing>
+        Subscription Demo
+      </Header>
       <p>
         The following examples are demo for working Subscription and Query
         GraphQL operations in the frontend
       </p>
       <Segment placeholder>
-        <Grid columns={2} relaxed="very" stackable>
+        <Grid columns={2} relaxed="very" stackable divided>
           <Grid.Column>
             <Formik
               initialValues={{
@@ -92,7 +95,6 @@ export const SubscriptionDemo: React.SFC<RouteComponentProps> = () => {
             )}
           </Grid.Column>
         </Grid>
-        <Divider vertical />
       </Segment>
       <Header>Current Users: </Header>
       {data ? (

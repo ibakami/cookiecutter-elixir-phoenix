@@ -1,11 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import { App } from "./src/app"
+import { App } from "./app"
 import { ApolloClient } from "apollo-client"
-import { apolloLinks } from "./apollo-links"
+import { apolloLinks } from "../apollo-links"
 import { InMemoryCache } from "apollo-cache-inmemory"
 import { ApolloProvider } from "@apollo/react-hooks"
+
+import "../semantic-ui/semantic.less"
 
 const appRoot: HTMLDivElement | null = document.querySelector("#root")
 

@@ -1,20 +1,21 @@
-import * as React from "react"
 import { RouteComponentProps } from "@reach/router"
-import { useRootTitle } from "../helpers/hooks"
-import { LoadingPage } from "../helpers/components"
+import * as React from "react"
+
+import { LoadingPage } from "../../helpers/components"
+import { useRootTitle } from "../../helpers/hooks"
 
 const PAGE_NAME = "Home"
 
 /**
- * React lazy isn't supported yet on typings,
- * and it doesn't allow named export yet, which sucks
+ * ? React lazy isn't supported yet on typings,
+ * ? and it doesn't allow named export yet, which sucks
  *
- * Also, we can't do something like an HoC for this to save lines of code
- * We are doing dynamic import and we need to separate the page to its own
+ * ? Also, we can't do something like an HoC for this to save lines of code
+ * ? We are doing dynamic import and we need to separate the page to its own
  */
 
-// IMPORTANT!
-// Change the webpackChunkName comment below, so the dynamic file will appear with a proper name
+// ! IMPORTANT!
+// ! Change the webpackChunkName comment below, so the dynamic file will appear with a proper name
 
 const LazyComponent = React.lazy(() =>
   import(/* webpackChunkName: "HomeComponent" */ "./home").then(module => ({

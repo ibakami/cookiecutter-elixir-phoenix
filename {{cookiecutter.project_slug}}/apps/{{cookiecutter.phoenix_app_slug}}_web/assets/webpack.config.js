@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
   return {
     entry: {
       // the [glob.sync()] part enables us to get everything that we imported in the project
-      "js/index": ["./index.tsx"].concat(glob.sync("./vendor/**/*.js")),
+      "js/index": ["./src/index.tsx"].concat(glob.sync("./vendor/**/*.js")),
     },
     output: {
       /**

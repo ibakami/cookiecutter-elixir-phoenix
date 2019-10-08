@@ -1,3 +1,4 @@
+import { Link } from "@reach/router"
 import React from "react"
 import {
   Container,
@@ -10,8 +11,8 @@ import {
   Menu,
   Segment,
 } from "semantic-ui-react"
+
 import { AppRouter } from "./app-router"
-import { Link } from "@reach/router"
 
 const SegmentMargin = { margin: "5em 0em 0em", padding: "5em 0em" }
 const ImageMargin = { marginRight: "1.5em" }
@@ -34,6 +35,9 @@ export const App = () => (
         </Menu.Item>
         <Menu.Item as={Link} to="/subscription-demo">
           Subscription Demo
+        </Menu.Item>
+        <Menu.Item as={Link} to="/reducer-context-demo">
+          Reducer/Context Demo
         </Menu.Item>
 
         <Dropdown item simple text="Dropdown">

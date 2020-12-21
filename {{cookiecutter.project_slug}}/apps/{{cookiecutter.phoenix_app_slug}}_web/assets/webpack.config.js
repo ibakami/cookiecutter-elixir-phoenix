@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
           loader: "babel-loader",
         },
         {
-          test: /\.s?css$/i,
+          test: /\.s?css|less$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
         // Some Apollo links and other libraries uses mjs extensions. We'll need a loader for that

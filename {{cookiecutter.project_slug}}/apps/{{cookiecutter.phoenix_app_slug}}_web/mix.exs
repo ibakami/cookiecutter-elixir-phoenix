@@ -56,6 +56,7 @@ defmodule {{cookiecutter.phoenix_app_module}}Web.MixProject do
       {:{{cookiecutter.phoenix_app_slug}}, in_umbrella: true},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:cowboy, "< 2.8.0", override: true},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_ecto, "~> 0.1.3"},

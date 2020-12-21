@@ -7,8 +7,6 @@ import { apolloLinks } from "../apollo-links"
 import { InMemoryCache } from "apollo-cache-inmemory"
 import { ApolloProvider } from "@apollo/react-hooks"
 
-import "../semantic-ui/semantic.less"
-
 const appRoot: HTMLDivElement | null = document.querySelector("#root")
 
 const cache = new InMemoryCache()
